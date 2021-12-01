@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -34,26 +35,37 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        TextView registerText = findViewById(R.id.textReg);
+
+        registerText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
+
         EditText textEmail = findViewById(R.id.editTextTextEmailAddress);
         EditText textPassword = findViewById(R.id.editTextTextPassword);
         Button buttonLogin = findViewById(R.id.button);
+
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Response.Listener<String>listener = new Response.Listener<String>() {
+                Response.Listener<String> listener = new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         try {
                             JSONObject object = new JSONObject(response);
                             if(object != null) {
-                                Toast.makeText(LoginActivity.this, "Login Success!", Toast.LENGTH_SHORT);
+                                Toast.makeText(LoginActivity.this, "Login Success!", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 loggedAccount = gson.fromJson(object.toString(), Account.class);
                                 startActivity(intent);
                             }
                         } catch (JSONException e){
                             e.printStackTrace();
-                            Toast.makeText(LoginActivity.this,"Login Error!", Toast.LENGTH_SHORT);
+                            Toast.makeText(LoginActivity.this,"Login Error!", Toast.LENGTH_SHORT).show();
                         }
                     }
                 };
