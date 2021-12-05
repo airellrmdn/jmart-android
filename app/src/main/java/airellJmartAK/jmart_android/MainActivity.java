@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -43,6 +44,13 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.account_button) {
             Toast.makeText(this, "Account Selected", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(MainActivity.this, AboutMeActivity.class);
+            startActivity(intent);
+        }
+        if (item.getItemId() == R.id.create_button) {
+            Toast.makeText(this, "Create Product Selected", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(MainActivity.this, CreateProductActivity.class);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
