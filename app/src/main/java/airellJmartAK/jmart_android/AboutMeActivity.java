@@ -37,6 +37,8 @@ public class AboutMeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_me);
 
+        getSupportActionBar().setTitle("About Me");
+
         name = findViewById(R.id.accountName);
         name.setText("" + LoginActivity.getLoggedAccount().name);
 
