@@ -24,7 +24,7 @@ import airellJmartAK.jmart_android.request.LoginRequest;
 
 public class LoginActivity extends AppCompatActivity {
     private static final Gson gson = new Gson();
-    private static Account loggedAccount = null;
+    public static Account loggedAccount = null;      // Access modifier jadi public agar dapat diakses dari luar
 
     public static Account getLoggedAccount(){
         return loggedAccount;

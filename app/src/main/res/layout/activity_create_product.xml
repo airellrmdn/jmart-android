@@ -8,9 +8,9 @@
 
     <LinearLayout
         android:id="@+id/createForm"
-        android:layout_width="405dp"
-        android:layout_height="498dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="369dp"
+        android:layout_height="469dp"
+        android:layout_marginTop="24dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

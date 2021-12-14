@@ -15,15 +15,13 @@ import android.widget.Toast;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        tabLayout = findViewById(R.id.tabLayoutMain);
-        viewPager = findViewById(R.id.viewpager);
+        TabLayout tabLayout = findViewById(R.id.tabLayoutMain);
+        ViewPager viewPager = findViewById(R.id.viewpager);
 
         tabLayout.setupWithViewPager(viewPager);
 
@@ -43,14 +41,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.account_button) {
-            Toast.makeText(this, "Account Selected", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Account Menu", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(MainActivity.this, AboutMeActivity.class);
             startActivity(intent);
+            return true;
         }
         if (item.getItemId() == R.id.create_button) {
-            Toast.makeText(this, "Create Product Selected", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Create Product", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(MainActivity.this, CreateProductActivity.class);
             startActivity(intent);
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }

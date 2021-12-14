@@ -11,7 +11,6 @@ public class Product extends Serializable{
     public int weight;
 
     public String toString(){
-        return "name: " + this.name + "\n" + "Weight: " + weight + "\n" + "ConditionUsed: " + this.conditionUsed + "\n" + "price: " +
-                price + "\n" + "Category: " + this.category + "\n" + "Discount: " + discount + "accountId: " + accountId;
+        return name;
     }
 }
