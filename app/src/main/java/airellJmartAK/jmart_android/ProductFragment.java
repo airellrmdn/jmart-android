@@ -15,7 +15,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -37,9 +36,11 @@ public class ProductFragment extends Fragment {
     public static ArrayList<Product> productsList = new ArrayList<>();
     ProductFragmentListener fragmentListener;
     ArrayAdapter<Product> listViewAdapter;
+    ArrayAdapter<Product> listViewAdapter2;
     final int pageSize = 20;
     static int page = 0;
     public static Product productClicked = null;
+    public static ListView listView;
 
     public interface ProductFragmentListener {
         void getProductList(ArrayAdapter<Product> listViewAdapter);
@@ -58,80 +59,82 @@ public class ProductFragment extends Fragment {
         Button nextButton = (Button) productView.findViewById(R.id.buttonNext);
         Button goButton = (Button) productView.findViewById(R.id.buttonGo);
         EditText inputPage = (EditText) productView.findViewById(R.id.inputPage);
+        listView = productView.findViewById(R.id.list_product);
 
-        Response.Listener<String> listener = new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONArray object = new JSONArray(response);
-                    if (object != null){
-                        productsList = gson.fromJson(object.toString(), new TypeToken<ArrayList<Product>>(){}.getType());
-                        System.out.println(productsList);
-                        listViewAdapter = new ArrayAdapter<Product>(getActivity(), android.R.layout.simple_list_item_2, android.R.id.text1, productsList) {
-                            @Override
-                            public View getView(int position, View convertView, ViewGroup parent) {
-                                View view = super.getView(position, convertView, parent);
-                                TextView text1 = (TextView) view.findViewById(android.R.id.text1);
-                                TextView text2 = (TextView) view.findViewById(android.R.id.text2);
-
-                                text1.setText(productsList.get(position).name);
-                                text2.setText("Rp" + String.valueOf(productsList.get(position).price));
-                                return view;
-                            }
-                        };
-                        ListView listView = productView.findViewById(R.id.list_product);
-                        listView.setAdapter(listViewAdapter);
-
-                        fragmentListener.getProductList(listViewAdapter);
-
-                        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                productClicked = (Product) listView.getItemAtPosition(position);
-                                Toast.makeText(getActivity(),"Product Selected", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(ProductFragment.this.getActivity(), ProductDetailActivity.class);
-                                startActivity(intent);
-                            }
-                        });
+        if (FilterFragment.status == 1) {
+            listViewAdapter2 = new ArrayAdapter<Product>(getActivity(), android.R.layout.simple_list_item_1, FilterFragment.filteredList);
+            listView.setAdapter(listViewAdapter2);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long id) {
+                    productClicked = (Product) listView.getItemAtPosition(i);
+                    Toast.makeText(getActivity(), "Product Selected", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(ProductFragment.this.getActivity(), ProductDetailActivity.class);
+                    startActivity(intent);
+                }
+            });
+        } else {
+            Response.Listener<String> listener = new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    try {
+                        JSONArray object = new JSONArray(response);
+                        if (object != null) {
+                            productsList = gson.fromJson(object.toString(), new TypeToken<ArrayList<Product>>() {}.getType());
+                            System.out.println(productsList);
+                            listViewAdapter = new ArrayAdapter<Product>(getActivity(), android.R.layout.simple_list_item_1, productsList);
+                            listView.setAdapter(listViewAdapter);
+                            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                    productClicked = (Product) listView.getItemAtPosition(position);
+                                    Toast.makeText(getActivity(), "Product Selected", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(ProductFragment.this.getActivity(), ProductDetailActivity.class);
+                                    startActivity(intent);
+                                }
+                            });
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                } catch (JSONException e){
-                    e.printStackTrace();
                 }
-            }
-        };
-        nextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(), "Next Page", Toast.LENGTH_SHORT).show();
-                page += 1;
-                getActivity().finish();
-                getActivity().startActivity(getActivity().getIntent());
-            }
-        });
-        prevButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(), "Previous Page", Toast.LENGTH_SHORT).show();
-                page -= 1;
-                if(page < 0){
-                    page = 0;
-                }
-                getActivity().finish();
-                getActivity().startActivity(getActivity().getIntent());
-            }
-        });
-        goButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(),"Go!", Toast.LENGTH_SHORT).show();
-                page = Integer.parseInt(inputPage.getText().toString()) - 1;
-                getActivity().finish();
-                getActivity().startActivity(getActivity().getIntent());
-            }
-        });
-        RequestQueue requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
-        requestQueue.add(RequestFactory.getPage("product", page, pageSize, listener, null));
+            };
 
+            nextButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(getActivity(), "Next Page", Toast.LENGTH_SHORT).show();
+                    page += 1;
+                    getActivity().finish();
+                    getActivity().startActivity(getActivity().getIntent());
+                }
+            });
+
+            prevButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(getActivity(), "Previous Page", Toast.LENGTH_SHORT).show();
+                    page -= 1;
+                    if (page < 0) {
+                        page = 0;
+                    }
+                    getActivity().finish();
+                    getActivity().startActivity(getActivity().getIntent());
+                }
+            });
+
+            goButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(getContext(), "Go!", Toast.LENGTH_SHORT).show();
+                    page = Integer.parseInt(inputPage.getText().toString()) - 1;
+                    getActivity().finish();
+                    getActivity().startActivity(getActivity().getIntent());
+                }
+            });
+            RequestQueue requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
+            requestQueue.add(RequestFactory.getPage("product", page, pageSize, listener, null));
+        }
         return productView;
     }
 

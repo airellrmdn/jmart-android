@@ -10,16 +10,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="5dp"
+            android:layout_marginHorizontal="15dp"
             android:layout_marginVertical="7dp"
             android:text="Name"
-            android:textSize="18sp"/>
+            android:textSize="17sp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,10 +28,10 @@
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/inputFilter"
+                android:id="@+id/inputNameFilter"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:layout_marginHorizontal="10dp"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
@@ -40,6 +41,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
             android:orientation="horizontal">
 
             <TextView
@@ -63,6 +65,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="68dp"
+            android:layout_marginHorizontal="10dp"
             android:orientation="horizontal">
 
             <EditText
@@ -97,6 +100,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="67dp"
+            android:layout_marginHorizontal="10dp"
             android:orientation="horizontal">
 
             <TextView
@@ -126,6 +130,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="274dp"
+            android:layout_marginHorizontal="10dp"
             android:orientation="horizontal">
 
             <TextView
@@ -143,7 +148,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="5dp"
                 android:layout_weight="1"
-                android:background="@android:drawable/btn_dropdown"
                 android:entries="@array/productCategory"
                 android:minHeight="48dp"
                 android:spinnerMode="dropdown"
@@ -156,7 +160,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button5"
+                android:id="@+id/applyFilter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
@@ -164,7 +168,7 @@
                 android:text="Apply" />
 
             <Button
-                android:id="@+id/button6"
+                android:id="@+id/clearFilter"
                 style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
