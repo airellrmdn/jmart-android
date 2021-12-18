@@ -31,12 +31,22 @@ import java.util.ArrayList;
 import airellJmartAK.jmart_android.model.Product;
 import airellJmartAK.jmart_android.request.RequestFactory;
 
+/**
+ * Product Fragment
+ *
+ * Digunakan untuk menampilkan informasi produk
+ * yang tersedia pada aplikasi
+ *
+ * @author Airell Ramadhan B
+ * @version 0.1
+ */
+
 public class ProductFragment extends Fragment {
     private static final Gson gson = new Gson();
     public static ArrayList<Product> productsList = new ArrayList<>();
     ProductFragmentListener fragmentListener;
-    ArrayAdapter<Product> listViewAdapter;
-    ArrayAdapter<Product> listViewAdapter2;
+    public static ArrayAdapter<Product> listViewAdapter;
+    public static ArrayAdapter<Product> listViewAdapter2;
     final int pageSize = 20;
     static int page = 0;
     public static Product productClicked = null;

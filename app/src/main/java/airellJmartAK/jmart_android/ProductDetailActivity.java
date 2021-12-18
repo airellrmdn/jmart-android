@@ -9,6 +9,15 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * ProductDetailActivity Class
+ *
+ * Digunakan untuk menampilkan informasi dari suatu
+ * produk yang dipilih.
+ *
+ * @author Airell Ramadhan B
+ */
+
 public class ProductDetailActivity extends AppCompatActivity {
 
     @Override

@@ -6,6 +6,15 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * LoginRequest Class
+ *
+ * PaymentRequest berfungsi untuk menghubungkan ke back-end sehingga
+ * pengguna dapat melakukan login dengan akun yang tersimpan di sistem back-end.
+ *
+ * @author Airell Ramadhan B
+ */
+
 public class LoginRequest extends StringRequest {
     private static final String URL = "http://10.0.2.2:8080/account/login";
     private final Map<String,String> params;

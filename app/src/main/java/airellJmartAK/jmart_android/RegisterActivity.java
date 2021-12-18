@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 
@@ -19,6 +20,16 @@ import org.json.JSONObject;
 
 import airellJmartAK.jmart_android.model.Account;
 import airellJmartAK.jmart_android.request.RegisterRequest;
+
+/**
+ * RegisterActivity Class
+ *
+ * Digunakan untuk menampilkan halaman yang akan
+ * digunakan untuk melakukan register akun.
+ *
+ * @author Airell Ramadhan B
+ * @version 0.1
+ */
 
 public class RegisterActivity extends AppCompatActivity {
     private static final Gson gson = new Gson();
@@ -54,7 +65,13 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                     }
                 };
-                RegisterRequest registerRequest = new RegisterRequest(userName.getText().toString(), userEmail.getText().toString(), userPass.getText().toString(), listener, null);
+                Response.ErrorListener errorListener = new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(RegisterActivity.this, "Connection Error!", Toast.LENGTH_LONG).show();
+                    }
+                };
+                RegisterRequest registerRequest = new RegisterRequest(userName.getText().toString(), userEmail.getText().toString(), userPass.getText().toString(), listener, errorListener);
                 RequestQueue requestQueue = Volley.newRequestQueue(RegisterActivity.this);
                 requestQueue.add(registerRequest);
             }

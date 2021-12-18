@@ -23,6 +23,16 @@ import org.json.JSONObject;
 import airellJmartAK.jmart_android.model.Product;
 import airellJmartAK.jmart_android.request.CreateProductRequest;
 
+/**
+ * CreateProductActivity Class
+ *
+ * Digunakan untuk menambahkan produk yang dijual pada
+ * aplikasi.
+ *
+ * @author Airell Ramadhan B
+ * @version 0.1
+ */
+
 public class CreateProductActivity extends AppCompatActivity {
     private static final Gson gson = new Gson();
     private static Product product = null;
@@ -45,6 +55,7 @@ public class CreateProductActivity extends AppCompatActivity {
         Spinner category = (Spinner) findViewById(R.id.spinnerCategory);
         Spinner shipmentPlans = (Spinner) findViewById(R.id.spinnerShipment);
 
+        /** Untuk menentukan value yang di-return saat memilih radio button */
         condition.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {

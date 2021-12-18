@@ -172,8 +172,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:gravity="center"
+                        android:textAllCaps="false"
                         android:paddingHorizontal="30dp"
-                        android:text="BUY NOW" />
+                        android:text="Proceed To Payment" />
 
                 </LinearLayout>
             </LinearLayout>

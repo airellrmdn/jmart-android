@@ -1,5 +1,10 @@
 package airellJmartAK.jmart_android.model;
 
+/**
+ * model as a ProductCategory similar to backend
+ * @author Airell Ramadhan B
+ */
+
 public enum ProductCategory {
     BOOK,
     KITCHEN,

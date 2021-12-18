@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 
@@ -22,6 +23,16 @@ import org.json.JSONObject;
 import airellJmartAK.jmart_android.model.Store;
 import airellJmartAK.jmart_android.request.RegisterStoreRequest;
 import airellJmartAK.jmart_android.request.TopUpRequest;
+
+/**
+ * AboutMeActivity Class
+ *
+ * Digunakan untuk menampilkan informasi akun dan store
+ * serta melakukan top-up.
+ *
+ * @author Airell Ramadhan B
+ * @version 0.1
+ */
 
 public class AboutMeActivity extends AppCompatActivity {
     private TextView name;
@@ -36,9 +47,9 @@ public class AboutMeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_me);
-
         getSupportActionBar().setTitle("About Me");
 
+        /** Mendeklarasikan TextView dan juga men-set text nya agar sesuai keinginan */
         name = findViewById(R.id.accountName);
         name.setText("" + LoginActivity.getLoggedAccount().name);
 
@@ -66,10 +77,11 @@ public class AboutMeActivity extends AppCompatActivity {
 
         registerStore.setVisibility(View.GONE);
 
+        /** Untuk menampilkan tombol RegisterStore jika akun tidak memiliki store */
         if (LoginActivity.getLoggedAccount().store == null){
             registerStore.setVisibility(View.VISIBLE);
         }
-        else {
+        else {  /** Jika akun memiliki store akan menampilkan detailnya */
             storeAboutCard.setVisibility(View.VISIBLE);
             TextView nameCard = findViewById(R.id.dataNameTextAbout);
             nameCard.setText("" + LoginActivity.getLoggedAccount().store.name);
@@ -79,6 +91,7 @@ public class AboutMeActivity extends AppCompatActivity {
             phoneCard.setText("" + LoginActivity.getLoggedAccount().store.phoneNumber);
         }
 
+        /** Untuk dapat melakukan top-up balance ke akun */
         topUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,7 +108,13 @@ public class AboutMeActivity extends AppCompatActivity {
                         startActivity(getIntent());
                     }
                 };
-                TopUpRequest topUpRequest = new TopUpRequest(LoginActivity.getLoggedAccount().id, Double.parseDouble(topUpInput.getText().toString()), listener, null);
+                Response.ErrorListener errorListener = new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(AboutMeActivity.this, "Top Up Failed!", Toast.LENGTH_SHORT).show();
+                    }
+                };
+                TopUpRequest topUpRequest = new TopUpRequest(LoginActivity.getLoggedAccount().id, Double.parseDouble(topUpInput.getText().toString()), listener, errorListener);
                 RequestQueue requestQueue = Volley.newRequestQueue(AboutMeActivity.this);
                 requestQueue.add(topUpRequest);
             }

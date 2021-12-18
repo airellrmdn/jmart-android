@@ -61,16 +61,16 @@ public class FilterFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getContext(), "Clear button clicked", Toast.LENGTH_SHORT).show();
-                name.setText("");
-                lowPrice.setText("");
-                highPrice.setText("");
-                usedCheck.setChecked(false);
-                newCheck.setChecked(false);
                 if (status == 1){
                     status = 0;
                     getActivity().finish();
                     getActivity().startActivity(getActivity().getIntent());
                 }
+                name.setText("");
+                lowPrice.setText("");
+                highPrice.setText("");
+                usedCheck.setChecked(false);
+                newCheck.setChecked(false);
             }
         });
 
