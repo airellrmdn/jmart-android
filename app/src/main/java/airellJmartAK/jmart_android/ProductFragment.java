@@ -55,10 +55,10 @@ public class ProductFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View productView = inflater.inflate(R.layout.fragment_product,container,false);
 
-        Button prevButton = (Button) productView.findViewById(R.id.buttonPrev);
-        Button nextButton = (Button) productView.findViewById(R.id.buttonNext);
-        Button goButton = (Button) productView.findViewById(R.id.buttonGo);
-        EditText inputPage = (EditText) productView.findViewById(R.id.inputPage);
+        Button prevButton = productView.findViewById(R.id.buttonPrev);
+        Button nextButton = productView.findViewById(R.id.buttonNext);
+        Button goButton = productView.findViewById(R.id.buttonGo);
+        EditText inputPage = productView.findViewById(R.id.inputPage);
         listView = productView.findViewById(R.id.list_product);
 
         if (FilterFragment.status == 1) {
@@ -66,8 +66,8 @@ public class ProductFragment extends Fragment {
             listView.setAdapter(listViewAdapter2);
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long id) {
-                    productClicked = (Product) listView.getItemAtPosition(i);
+                public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                    productClicked = (Product) listView.getItemAtPosition(position);
                     Toast.makeText(getActivity(), "Product Selected", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(ProductFragment.this.getActivity(), ProductDetailActivity.class);
                     startActivity(intent);

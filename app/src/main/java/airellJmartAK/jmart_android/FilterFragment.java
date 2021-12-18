@@ -101,7 +101,7 @@ public class FilterFragment extends Fragment {
                     }
                 };
                 RequestQueue requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
-                requestQueue.add(RequestFactory.getProductFiltered(ProductFragment.page, pageSize, name.getText().toString(), Double.parseDouble(lowPrice.getText().toString()), Double.parseDouble(highPrice.getText().toString()), ProductCategory.valueOf(category.getSelectedItem().toString()), usedCheck.isChecked(), listener, null));
+                requestQueue.add(RequestFactory.getProductFiltered(page, pageSize, name.getText().toString(), Double.parseDouble(lowPrice.getText().toString()), Double.parseDouble(highPrice.getText().toString()), ProductCategory.valueOf(category.getSelectedItem().toString()), usedCheck.isChecked(), listener, null));
             }
         });
 

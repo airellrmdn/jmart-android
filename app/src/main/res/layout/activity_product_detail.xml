@@ -7,6 +7,7 @@
     tools:context=".ProductDetailActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
@@ -18,7 +19,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card"
@@ -37,7 +37,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
                 android:orientation="vertical">
-
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -62,39 +61,28 @@
                         android:text="Rp1,000,000"
                         android:textAppearance="?attr/textAppearanceBody2"
                         android:textColor="?android:attr/textColorSecondary" />
-
                 </LinearLayout>
-
 
                 <TableLayout
                     android:id="@+id/tableLayout"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_below="@id/accountDetails"
                     android:layout_marginTop="10dp"
                     android:stretchColumns="1"
-                    app:layout_constraintTop_toBottomOf="@+id/accountDetails"
-                    tools:layout_editor_absoluteX="0dp">
+                    app:layout_constraintTop_toBottomOf="@+id/accountDetails">
 
                     <TableRow
                         android:layout_marginTop="0dp"
-                        android:layout_marginBottom="10dp">
+                        android:layout_marginBottom="1dp">
 
                         <TextView
-                            android:layout_width="265dp"
                             android:layout_column="1"
-                            android:padding="10dip"
+                            android:padding="5dip"
                             android:text="Detail Produk"
                             android:textColor="#000000"
                             android:textSize="15sp"
                             android:textStyle="bold" />
-
-                        <ImageView
-                            android:id="@+id/imageView"
-                            android:layout_width="match_parent"
-                            android:layout_height="27dp"
-                            app:srcCompat="@drawable/ic_baseline_shopping_cart_24" />
-
                     </TableRow>
 
                     <TableRow
@@ -129,7 +117,7 @@
                             android:id="@+id/productDetailCondition"
                             android:gravity="right"
                             android:padding="10dip"
-                            android:text="null"
+                            android:text="USED"
                             android:textStyle="bold" />
                     </TableRow>
 
@@ -165,7 +153,7 @@
                             android:id="@+id/productDetailShipment"
                             android:gravity="right"
                             android:padding="10dip"
-                            android:text="null"
+                            android:text="SAME DAY"
                             android:textStyle="bold" />
                     </TableRow>
                 </TableLayout>
@@ -179,7 +167,7 @@
                     android:orientation="horizontal">
 
                     <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btnBeli"
+                        android:id="@+id/btnBuy"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
@@ -191,5 +179,15 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="27dp"
+        android:layout_marginBottom="14dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_baseline_shopping_cart_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

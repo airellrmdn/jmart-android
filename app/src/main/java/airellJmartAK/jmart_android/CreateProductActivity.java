@@ -2,6 +2,7 @@ package airellJmartAK.jmart_android;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -40,7 +41,7 @@ public class CreateProductActivity extends AppCompatActivity {
         RadioButton newCondition = findViewById(R.id.radioNew);
         RadioButton usedCondition = findViewById(R.id.radioUsed);
         Button create = (Button) findViewById(R.id.btnCreate);
-        Button clear = (Button) findViewById(R.id.btnCancel);
+        Button cancel = (Button) findViewById(R.id.btnCancel);
         Spinner category = (Spinner) findViewById(R.id.spinnerCategory);
         Spinner shipmentPlans = (Spinner) findViewById(R.id.spinnerShipment);
 
@@ -83,7 +84,7 @@ public class CreateProductActivity extends AppCompatActivity {
             }
         });
 
-        clear.setOnClickListener(new View.OnClickListener() {
+        cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 nameInput.setText("");
@@ -92,6 +93,8 @@ public class CreateProductActivity extends AppCompatActivity {
                 discountInput.setText("");
                 usedCondition.setChecked(false);
                 newCondition.setChecked(false);
+                Intent intent = new Intent(CreateProductActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
     }
