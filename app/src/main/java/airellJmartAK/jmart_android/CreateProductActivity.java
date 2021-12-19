@@ -26,8 +26,8 @@ import airellJmartAK.jmart_android.request.CreateProductRequest;
 /**
  * CreateProductActivity Class
  *
- * Digunakan untuk menambahkan produk yang dijual pada
- * aplikasi.
+ * Digunakan untuk menambahkan produk yang akan dijual
+ * pada aplikasi.
  *
  * @author Airell Ramadhan B
  * @version 0.1

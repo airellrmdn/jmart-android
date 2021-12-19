@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * LoginRequest Class
  *
- * PaymentRequest berfungsi untuk menghubungkan ke back-end sehingga
+ * LoginRequest berfungsi untuk menghubungkan ke back-end sehingga
  * pengguna dapat melakukan login dengan akun yang tersimpan di sistem back-end.
  *
  * @author Airell Ramadhan B
